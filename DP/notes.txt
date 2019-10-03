@@ -1,0 +1,12 @@
+Top-down to bottom-up conversion is done by eliminating recursion. In practice, this achieves better performance
+as we no longer have the method stack overhead and might even benefit from some caching. More importantly, this 
+step opens up possibilities for future optimization. The recursion is usually eliminated by trying to reverse the
+order of the steps from the top-down approach.
+
+
+https://leetcode.com/articles/jump-game/
+
+In fibonacci in top down to calculate fib(n) we call the recursion and ask for the result of fib(n-1) and fib(n-2). So in 
+memoization or recursion first subproblems of smaller size are computed. We can do this bottomup by first solving the smaller
+subproblems and then use there results in the bigger subproblem which is the same way done using stack but in bottomp up we don't
+want to rely upon the recursion to do that.

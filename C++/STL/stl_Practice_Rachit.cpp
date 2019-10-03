@@ -1,0 +1,144 @@
+// https://www.geeksforgeeks.org/binary-search-functions-in-c-stl-binary_search-lower_bound-and-upper_bound/
+// above link is excellent
+
+
+// Extremely Important : When using upper_bound() and lower_bound() your container needs to be sorted always.
+// http://www.cplusplus.com/reference/algorithm/upper_bound/
+
+#include<vector>
+#include<iostream>
+#include<algorithm>
+
+using namespace std;
+
+struct data{
+    int x;
+    int y;
+};
+
+bool compare(data one , data two){
+    return (one.x < two.x);
+}
+
+void show(vector<int> &v){
+    for(auto i:v)
+        cout << i <<" ";
+
+    cout << endl;
+}
+
+void show1(vector<int> &v){
+    vector<int> :: iterator it;
+
+    for(it= v.begin(); it!=v.end();it++)
+        cout << *it << " ";
+
+    cout <<endl;
+}
+
+int main(void){
+
+    /*
+    vector<int> v{56,567,67,32,5,1,3434,56,656};
+
+    sort(v.begin(), v.end());
+
+    // way 1 of printing the vector 'auto' will handle everything
+    for(auto x: v)
+        cout << x <<" ";
+    cout << endl;
+
+    // way 2 of printing the vector using the iterator
+    for(auto x = v.begin(); x!= v.end();x++)
+        cout << *x << " ";
+
+    cout << endl;
+
+    v.push_back(100);
+    v.push_back(454);
+
+    for(auto x: v)
+        cout << x <<endl;
+
+    // sorting vector of structs
+    vector<data> v1{{1,3},{4,6},{9,8},{3,6}};
+
+    sort(v1.begin(), v1.end(),compare);
+
+    for(auto p: v1)
+        cout << "[" << p.x <<","<<p.y <<"]" <<" ";
+
+    vector<int> v2;
+    v2.push_back(5);
+    v2.push_back(9);
+    v2.push_back(0);
+    v2.push_back(51);
+    v2.push_back(534);
+    v2.push_back(554);
+
+    //5 9 0 51 534 554
+    bool present=binary_search(v2.begin(),v2.end(),554);
+    cout << present <<"\n\n";
+
+
+    v2.push_back(50);
+    v2.push_back(50);
+    v2.push_back(50);
+    v2.push_back(50);
+    v2.push_back(50);
+    v2.push_back(50);
+
+    //v2.pop_back();
+
+    show(v2);
+
+    cout << endl;
+    // find the first occurrence of element >=50  in v2
+    vector<int> :: iterator it1= lower_bound(v2.begin(),v2.end(),50);
+    cout << (it1-v2.begin()) << endl;
+
+    // find the occurrence of first element > (strictly greater) than 9 in v2
+    vector<int> :: iterator it2= upper_bound(v2.begin(), v2.end(),9);
+    cout << (it2-v2.begin()) << endl;
+
+    show1(v2);
+
+    // changing the contents of the array...you need to iterate using reference
+    for(auto &x:v2){
+        x*=2;
+    }
+
+    cout << endl;
+
+    show1(v2);
+
+    */
+
+    // ****  Learning more of lower_bound and upper_bound ****
+
+    vector<int> v3{0,9,4,105,78,12,14,72,567,14,30};
+
+    sort(v3.begin(), v3.end());
+
+    show1(v3);
+
+    bool present= binary_search(v3.begin(), v3.end(), 56);
+
+    cout << present << endl;
+
+    cout <<"Lower bound when element is present"<< "\n" << ((lower_bound(v3.begin(), v3.end(), 14)) - v3.begin()) << endl;
+
+
+    cout <<"lower bound when element is not present" << "\n" << ((lower_bound(v3.begin(), v3.end(), 100)) -v3.begin()) << endl;
+
+    cout <<  "Upper bound when element is present" << endl;
+    cout << upper_bound(v3.begin(), v3.end(),72)- v3.begin() << endl;
+
+    //cout <<  *(upper_bound(v3.begin(), v3.end(), 72)) << endl;
+
+    cout <<  "Upper bound when element is not present" << endl;
+    cout << upper_bound(v3.begin(), v3.end(), 100)- v3.begin() << endl;
+
+
+    return 0;
+}
