@@ -12,6 +12,9 @@ int main(){
     unsigned int x=0;
 
     scanf("%d",&x);
+
+
+    printf("%d ", 6);
     
     fun(x);
 
