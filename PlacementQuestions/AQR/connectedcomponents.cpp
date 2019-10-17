@@ -1,4 +1,4 @@
-//The edges are coming from input like queries
+//The edges are coming from input like queries like in exawizards
 
 #include<bits/stdc++.h>
 
