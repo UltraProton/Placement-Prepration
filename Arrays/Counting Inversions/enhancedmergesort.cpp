@@ -5,10 +5,10 @@ typedef long long ll;
 using namespace std;
 
 ll merge_sort(vector<ll> &arr, ll l, ll r);
-ll merge(vector<ll> &arr, ll l, ll mid, ll r);
+ll merge(vector<ll> &arr, ll l, ll r);
 
 int main(){
-    vector<ll> arr{59,29};
+    vector<ll> arr{3,2,1};
 
     int ans= merge_sort(arr,0,arr.size()-1);
     
@@ -18,49 +18,30 @@ int main(){
 }
 
 ll merge_sort(vector<ll> &arr, ll l, ll r){
+    int ans=0;
     if(l<r){
         ll mid = l+ (r-l)/2;
-        ll L_ans= merge_sort(arr, l,mid);
-        ll R_ans= merge_sort(arr, mid+1,r);
-        ll cross_ans= merge(arr, l,mid,r);
-
-        return (L_ans+R_ans+cross_ans);
+        ans+= merge_sort(arr, l,mid);
+        ans+= merge_sort(arr, mid+1,r);
+        ans+= merge(arr, l,r);
     }
-    return 0;
+    return ans;
 }
 
 
-ll merge(vector<ll> &arr, ll l, ll mid, ll r){
+ll merge(vector<ll> &arr, ll l, ll r){
     // vector<ll> L;
     // vector<ll> R;
     ll ans=0;
     ll i=0,j=0;
+    int mid= l + (r-l)/2;
+
     vector<ll> temp;
-/*
-    We don't even need these to count
-
-    ll n1= mid-l+1;
-    ll n2= r-mid;
-    
-*/    
-    /*
-
-    This temporary arrays creation and copying can be avoided but we need a temporary array
-
-    for(int i=0;i<n1;i++){
-        L.push_back(arr[l+i]);
-    }
-
-    for(int j=0;j<n2;j++){
-        R.push_back(arr[j+mid+1]);
-    }
-    */
 
     i=l;
-    j=mid;
-    ll k=l;
+    j=mid+1;
 
-    while (i<=mid-1 && j<=r)
+    while (i<mid +1 && j<r+1)
     {
        if(arr[i] <= arr[j]){
            temp.push_back(arr[i]);
@@ -68,18 +49,18 @@ ll merge(vector<ll> &arr, ll l, ll mid, ll r){
        } 
        //we got the inversions
        else{
-           ans=ans+ mid-i;
+           ans=ans+ mid+1-i;
            temp.push_back(arr[j]);
            j++;
        }
     }
 
-    while(i<=mid-1){
+    while(i<mid+1){
         temp.push_back(arr[i]);
         i++;
     }
 
-    while(j<=r){
+    while(j<r+1){
         temp.push_back(arr[j]);
         j++;
     }
@@ -94,7 +75,7 @@ ll merge(vector<ll> &arr, ll l, ll mid, ll r){
     
     */
 
-    k=0;
+    ll k=0;
     for(i=l;i<=r;i++,k++){
         arr[i]= temp[k];
     }
@@ -103,3 +84,60 @@ ll merge(vector<ll> &arr, ll l, ll mid, ll r){
 }
 
 
+// void mergei(int a[],int i,int j)
+// {
+//     int ni=((i+j)/2)+1,nj=j+1;
+//     int s=i;
+//     int * arr = new int [j-i+1];
+//     j=ni;
+//     int k=0;
+//     while(i<ni && j<nj)
+//     {
+//         if(a[i]<=a[j])
+//         {
+//             arr[k]=a[i];
+//             i++;
+//         }
+//         else
+//         {
+//             arr[k]=a[j];
+//             ans+=(ni-i);
+//             j++;
+//         }
+//         k++;
+//     }
+//     for(;i<ni;i++,k++)
+//         arr[k]=a[i];
+//     for(;j<nj;j++,k++)
+//         arr[k]=a[j];
+//     for(k=0;s<nj;s++,k++)
+//         a[s]=arr[k];
+//     delete [] arr;
+// }
+
+// void m_sort(int a[],int i,int j)
+// {
+//     if(i<j)
+//     {
+//         m_sort(a,i,(i+j)/2);
+//         m_sort(a,((i+j)/2)+1,j);
+//         mergei(a,i,j);
+//     }
+// }
+// int main()
+// {
+//     int t;
+//     scanf("%d",&t);
+//     while(t--)
+//     {
+//         int n;
+//         ans=0;
+//         scanf("%d",&n);
+//         int * a = new int[n];
+//         for(int i=0;i<n;i++)
+//             scanf("%d",&a[i]);
+//         m_sort(a,0,n-1);
+//         cout<<ans<<endl;
+//     }
+//     return 0;
+// }
