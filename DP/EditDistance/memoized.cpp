@@ -39,7 +39,7 @@ ll edit_dist(string &s1, string &s2, int m, int n, vector<vector<ll>> &memo){
         return m;
     }
 
-    //if the characters at the last positions match then find the answer with the remaining substrings
+    //if the characters at the last positions match then find the answer with the remaining substring
     if(s1[m-1]==s2[n-1]){
         memo[m][n]= edit_dist(s1,s2,m-1,n-1,memo);
         return memo[m][n];

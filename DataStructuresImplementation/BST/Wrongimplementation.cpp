@@ -14,46 +14,44 @@ class BST{
     public:
     node *Insert(node *root, int key);
     node *Search(node *root, int key);
-    node *Delete_helper(node *root);
-    void Delete(node *root, int key);
+    node *Delete_helper_incorrect(node *root);
+    //returns the root of the tree after the delete operation
+    node* Delete_incorrect(node *root, int key);
     void print_inorder(node *root);
 };
 
 
 int main(int argc, char const *argv[])
 {
-    /* code */
-
-    BST bst;
-    
+    BST bst;   
     node *root =NULL;
 
-    root= bst.Insert(root, 1);
-    
-    bst.Insert(root,2);
-    bst.Insert(root,5);
-
-    bst.print_inorder(root);
-
-    node *x= bst.Search(root,5);
-
-    cout<<endl;
-
-    if(x){
-        cout<<x->val<<endl;
-    }
-    
-
-    bst.Delete(root,5);
-
-    x= bst.Search(root,2);
-
-    cout<<endl;
-
-    if(x){
-        cout<<x->val<<endl;
-    }
-
+    root = bst.Insert(root, 50); 
+    root = bst.Insert(root, 30); 
+    root = bst.Insert(root, 20); 
+    root = bst.Insert(root, 40); 
+    root = bst.Insert(root, 70); 
+    root = bst.Insert(root, 60); 
+    root = bst.Insert(root, 80); 
+  
+    printf("Inorder traversal of the given tree \n"); 
+    bst.print_inorder(root); 
+  
+    printf("\nDelete 20\n"); 
+    root = bst.Delete_incorrect(root, 20); 
+    printf("Inorder traversal of the modified tree \n"); 
+    bst.print_inorder(root); 
+  
+    printf("\nDelete 30\n"); 
+    root = bst.Delete_incorrect(root, 30); 
+    printf("Inorder traversal of the modified tree \n"); 
+    bst.print_inorder(root); 
+  
+    printf("\nDelete 50\n"); 
+    root = bst.Delete_incorrect(root, 50); 
+    printf("Inorder traversal of the modified tree \n"); 
+    bst.print_inorder(root); 
+  
     return 0;
 }
 
@@ -116,42 +114,49 @@ inorder successor and delete the node. We can also replace the node with inorder
 
 
  */
-void BST :: Delete(node *root, int key){
+node* BST :: Delete_incorrect(node *root, int key){
     if(!root){
-        return;
+        return root;
     }
 
     if(root->val==key){
         if(!root->left && !root->right){
             delete root;
+            root=NULL;
         }
         else if(root->left && root->right){
             node * temp= Delete_helper(root->right);
-            swap(root,temp);
-            delete root;
+            //swap(root,temp);
+            root->val= temp->val;
+            root->right= Delete_incorrect(root->right,temp->val);
         }
         else if(!root->left){
             swap(root->right, root);
-            delete root;
+            delete root->right;
         }
         else{
             swap(root->left,root);
-            delete root;
+            delete root->left;
         }
+
+        return root;
     }
 
     else if(root->val< key){
-        Delete(root->right,key);
+        root->right= Delete_incorrect(root->right,key);
     }
     else{
-        Delete(root->left, key);
+        root->left= Delete_incorrect(root->left, key);
     }
+
+    return root;
 }
 
-node * BST :: Delete_helper(node *root){
+node * BST :: Delete_helper_incorrect(node *root){
+    //if going to the left we found that root has become null then seg fault 
     if(!root->left){
         return root;
     }
 
-    return Delete_helper(root->left);
+    return Delete_helper_incorrect(root->left);
 }

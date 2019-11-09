@@ -1,2 +1,0 @@
-1. In Dijkstra's algo the same vertex may be pushed inside the queue multiple times but when it is removed from the queue then the 
-distance computed upto that point is the final distance i.e it is the final shortest distance from the source to the destination.

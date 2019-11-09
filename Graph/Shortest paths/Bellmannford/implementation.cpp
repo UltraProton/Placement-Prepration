@@ -1,7 +1,5 @@
 /*
-
 http://courses.csail.mit.edu/6.006/spring11/lectures/lec15.pdf
-
 
  */
 
