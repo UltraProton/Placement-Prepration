@@ -23,6 +23,8 @@ class A{
     int getA(){
         return a;
     }
+
+    ~A(){}
 };
 
 class B :public A{
@@ -45,6 +47,8 @@ class B :public A{
     int getB(){
         return b;
     }
+
+    ~B();
 };
 
 int main(){
@@ -72,6 +76,13 @@ int main(){
     * In case we forget to call the base class constructor then the compiler will implicitly call the base class default constructor and if
     * it doesn't find the base class default constructor because we made our own constructor then we will have an error.
      
+    ? About Destructors:
+    * In case of destructors first child destructor will execute its code and then parent's destructor will be executed. Its opposite to the
+    * case of constructors where first parent's constructor will be executed and after that the child constructor gets executed. Destructor's
+    * don't have any scope of arguments so here if we forget to create the destructor then compiler will automatically create a destructor with
+    * empty body and even if we don't call the base class destructor then also the base class destructor will be called after finishing the 
+    * child class destructor execution by the compiler.
+
      */
 
     return 0;
