@@ -27,6 +27,8 @@ class sportsCar: public Car{
 
 };
 
+
+//* When to do private inheritance
 class Array{
     private:
     int a[10];

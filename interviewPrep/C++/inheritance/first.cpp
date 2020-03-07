@@ -54,7 +54,7 @@ class A6:  public  A4  {};
     
     * Protected:
     *   1. User1 can't access protected members but User2 can access the protected members of the base class directly. Remember that private
-    *      is still available to both the users but only accessible by user2.
+    *      is still available to both the users.
     *
     * Public: 
     *   1. Can be accessed by both User1 and User2.

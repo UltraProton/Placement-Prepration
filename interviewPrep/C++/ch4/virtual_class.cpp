@@ -11,8 +11,9 @@ class Container{
 
 class Vector_Container :  Container{
 
-}
+};
 
 int main(){
 
+    return 0;
 }
