@@ -70,7 +70,7 @@ ll merge1(vector<ll> &arr, ll l, ll m, ll r){
         y++;
     }
     
-    ll  k=0;
+    ll k=0;
     for(ll i=l;i<=r;i++,k++){
         arr[i]=temp[k];
     }
