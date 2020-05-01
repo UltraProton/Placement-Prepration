@@ -7,7 +7,7 @@ int longest_bitonic_subsequence(vector<int> &V);
 int main(int argc, char const *argv[])
 {
     /* code */
-    vector<int> V{1,11,2,10,4,5,2,1};
+    vector<int> V{1,2,5,3,2};
 
     int t=0;
     int n=0;
@@ -47,6 +47,8 @@ int longest_bitonic_subsequence(vector<int> &V){
     }
 
     //find the lds of the input
+    //Remember longest decreasing subsequence ending at the index will be different from the lds starting at the
+    // index
     for(int i=n-2;i>=0;i--){
         for(int j=n-1;j>i;j--){
             if(V[i] > V[j] && LDS[i] < LDS[j]+1){
@@ -54,6 +56,11 @@ int longest_bitonic_subsequence(vector<int> &V){
             }
         }
     }
+
+    for(auto x:LDS){
+        cout<<x<<" ";
+    }
+    cout<<endl;
 
     //find the length of longest bitonic subsequence
     //* Note that at any index the lis includes as well as lds also includes the element at index so our ans is 

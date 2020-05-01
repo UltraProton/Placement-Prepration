@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 
 int fun1(vector<int> &arr);
-pair<in,int> fun2(vector<int> &arr);
+pair<int,int> fun2(vector<int> &arr);
 
 int main(){
 
