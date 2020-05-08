@@ -21,7 +21,8 @@ class compare{
 ListNode *mergekLists(vector<ListNode *> lists);
 
 int main(){
-
+    vector<ListNode *> lists;
+    return 0;
 }
 
 ListNode *mergekLists(vector<ListNode *> lists){
